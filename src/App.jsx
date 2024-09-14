@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Layout from "./layout/Layout.jsx";
@@ -11,6 +10,7 @@ import ArtistInfoPage from "./pages/DetailPage/ArtistInfoPage";
 import { Provider } from "react-redux";
 import store from "./redux/store.jsx";
 import ProtectPage from "./layout/Component/ProtectPage.jsx";
+import SearchResultPage from "./pages/SearchResultPage/SearchResultPage.jsx";
 
 function App() {
   return (
@@ -28,8 +28,9 @@ function App() {
             <Route index element={<HomePage />} />
             <Route path="search" index element={<SearchPage />} />
             <Route path="detail/:type/:id" element={<DetailPage />} />
-            <Route path="detail/ArtistInfoPage" element={<ArtistInfoPage />} />
-            <Route path="detail/AlbumPage" element={<AlbumPage />} />
+            <Route path="detail/artist/:id" element={<ArtistInfoPage />} />
+            <Route path="detail/album/:id" element={<AlbumPage />} />
+            <Route path="search/:keyword" element={<SearchResultPage />} />
           </Route>
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
