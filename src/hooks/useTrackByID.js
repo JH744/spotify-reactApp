@@ -1,16 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
 import api from "../utils/useApi.jsx";
-const fetchGenreSeeds = async () => {
-  return api.get(`/recommendations/available-genre-seeds`);
+
+
+const fetchTrack = async (ids) => {
+    return api.get(`/tracks/${ids}`);
 };
 
-export const useGenreSeeds = () => {
+export const useTrackByID = (ids) => {
+
 
     return useQuery({
-        queryKey: ["genre",],
-        queryFn: () => fetchGenreSeeds(),
+        queryKey: ["trackById",ids],
+        queryFn: () => fetchTrack(ids),
         retry: false,
-        select: (result) => result.data.genres,
+        select: (result) => result.data,
         staleTime: 1000 * 60 * 10, // 10분 동안 데이터가 stale되지 않음
         gcTime: 1000 * 60 * 60, // 60분 동안 캐시에 유지됨
         refetchOnWindowFocus: false,
